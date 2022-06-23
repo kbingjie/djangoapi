@@ -19,7 +19,13 @@ from editier2api import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
+    path("", views.index, name="index"),
     path("admin/", admin.site.urls),
-    path("editier2/", views.testdata),
+    # path("editier2/", views.EdiTier2.as_view(), name="testdata"), #FBVs
+    path("datalist/", views.DataList.as_view(), name="DataList"),  # CBVs
+    # path("editier2/", views.testdata),### FBVs with no authentication
     path("editier2/<int:id>", views.individual_data),
+    # for jobflow api
+    path("jobflow/", views.JobFlowList.as_view(), name="JobFlowList"),
+    path("jobflow/<int:pk>", views.EachJobFlow.as_view(), name="EachJobFlow"),
 ]

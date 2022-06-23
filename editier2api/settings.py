@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "rest_framework.authtoken",
     "rest_framework",
     "editier2api",
     "django.contrib.admin",
@@ -51,6 +52,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",  # <-- And here
+    ],
+}
 ROOT_URLCONF = "editier2api.urls"
 
 TEMPLATES = [

@@ -9,3 +9,14 @@ class Editier2api(models.Model):
 
     def __str__(self):
         return str(self.created)
+
+
+class JobFlow(models.Model):
+    jobFlowName = models.CharField(max_length=50)
+    intervalTime = models.FloatField()
+    jobName = models.CharField(max_length=50)
+    countryCode = models.CharField(max_length=10)
+    created = models.DateTimeField(default=datetime.datetime.now)
+
+    def __str__(self):
+        return str(self.jobFlowName)
