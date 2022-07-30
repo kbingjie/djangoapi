@@ -5,4 +5,4 @@ response = requests.get("http://127.0.0.1:8000/datalist/", headers=headers)
 noAuthenResponse = requests.get("http://127.0.0.1:8000/jobflow/")
 
 
-print(noAuthenResponse.json())
+print(response.json())

@@ -89,33 +89,33 @@ WSGI_APPLICATION = "editier2api.wsgi.application"
 #     }
 # }
 # for docker build
-DATABASES = {
-    "default": {
-        "ENGINE": "mssql",
-        "NAME": "t",
-        "USER": "sa",
-        "PASSWORD": "b0k039p@COMPLETE",
-        "HOST": "host.docker.internal",
-        "PORT": "1433",
-        "OPTIONS": {
-            "driver": "ODBC Driver 17 for SQL Server",
-        },
-    },
-}
-# for local dev env
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "mssql",
-#         "NAME": "apitest",
+#         "NAME": "t",
 #         "USER": "sa",
 #         "PASSWORD": "b0k039p@COMPLETE",
-#         "HOST": "127.0.0.1",
+#         "HOST": "host.docker.internal",
 #         "PORT": "1433",
 #         "OPTIONS": {
 #             "driver": "ODBC Driver 17 for SQL Server",
 #         },
 #     },
 # }
+# for local dev env
+DATABASES = {
+    "default": {
+        "ENGINE": "mssql",
+        "NAME": "apitest",
+        "USER": "sa",
+        "PASSWORD": "b0k039p@COMPLETE",
+        "HOST": "127.0.0.1",
+        "PORT": "1433",
+        "OPTIONS": {
+            "driver": "ODBC Driver 17 for SQL Server",
+        },
+    },
+}
 
 
 # Password validation

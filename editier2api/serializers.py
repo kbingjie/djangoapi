@@ -20,3 +20,7 @@ class JobFlowSerializer(serializers.ModelSerializer):
             "countryCode",
             "created",
         ]
+
+    # def get_object(self,obj):
+    #     custom_query = models.JobFlow.objects.filter(id=obj.id)
+    #     serializer = JobFlowSerializer

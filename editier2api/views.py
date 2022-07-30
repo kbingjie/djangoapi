@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from .models import Editier2api
 from .models import JobFlow
 from .serializers import Editier2apiSerializer
@@ -56,7 +56,7 @@ def index(request):
 #     def delete()
 @api_view(["GET", "PUT", "DELETE"])
 def individual_data(request, id, format=None):
-    # create an var to hold the object, return not found if id doesnt match
+    # create an var to hold the object, return not found if id doesnt match,
     try:
         each_data = Editier2api.objects.get(pk=id)
     except Editier2api.DoesNotExist:
@@ -92,18 +92,34 @@ class JobFlowList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# @api_view(["GET"])
+# def each_test(request, id, format=None):
+#     # create an var to hold the object, return not found if id doesnt match,
+#     try:
+#         each_data = JobFlow.objects.get(pk=id)
+#     except JobFlow.DoesNotExist:
+#         return Response(status=status.HTTP_404_NOT_FOUND)
+#     if request.method == "GET":
+#         ##variable name spelled wrong
+#         serializer = JobFlowSerializer(each_data)
+#         return Response(serializer.data)
+
+
 class EachJobFlow(APIView):
+    # but the route is not taking this get_object before other function, why??
+    ##something wrong with the try and except function
     def get_object(self, pk):
         try:
             EachJobFlow = JobFlow.objects.get(pk=pk)
             return EachJobFlow
         except JobFlow.DoesNotExist:
+            print("did it go here?")
             raise Http404
 
     def get(self, request, pk, format=None):
         jobFlow = self.get_object(pk)
         serializer = JobFlowSerializer(jobFlow)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, pk, format=None):
         jobFlow = self.get_object(pk)
